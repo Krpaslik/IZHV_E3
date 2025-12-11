@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
-using UnityEditor.PackageManager;
+// using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.InputSystem;
@@ -123,6 +123,18 @@ public class Settings : MonoBehaviour
      *   Do not forget to set the Joining Behavior and the Player Prefab!
      */
     
+    public void OnPlayerJoined(UnityEngine.InputSystem.PlayerInput playerInput)
+    {
+        if (playerInput == null) return;
+        AddPlayer(playerInput.gameObject);
+    }
+
+    public void OnPlayerLeft(UnityEngine.InputSystem.PlayerInput playerInput)
+    {
+        if (playerInput == null) return;
+        RemovePlayer(playerInput.gameObject);
+    }
+
     /// <summary>
     /// Called when the script instance is first loaded.
     /// </summary>
